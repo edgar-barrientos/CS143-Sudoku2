@@ -105,6 +105,32 @@ public class SudokuBoard {
 		return true;
 	}
 
+	private boolean hasSquareDuplicates() {
+		for(int i = 0; i < 3; i++) {
+			for(int j = 0; j < 3; j++) {
+				Set<String> set = new HashSet<>();
+				int dotCount = 0;
+				for(int r = 0; r < 3; r++) {
+					for(int c = 0; c < 3; c++) {
+						int rows = i * 3 + r;
+						int cols = i * 3 + c;
+						set.add(board[i * 3 + r][j * 3 + c]);
+						if(board[i * 3 + r][j * 3 + c].equals(".")) {
+							dotCount++;
+						}
+					}
+				}
+				if(set.contains(".")){
+					dotCount--;
+				}
+				if(set.size() + dotCount < 9) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
 	//toString
 	public String toString() {
 		return printBoard();
