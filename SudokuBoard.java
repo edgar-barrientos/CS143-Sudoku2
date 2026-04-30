@@ -65,6 +65,26 @@ public class SudokuBoard {
 		return true;
 	}
 
+	private boolean hasRowDuplicates() {
+		for(int c = 0; c < board.length; c++) {
+			Set<String> set = new HashSet<>();
+			int dotCount = 0;
+			for(String[] row : board) {
+				set.add(row[c]);
+				if(row[c].equals(".")) {
+					dotCount++;
+				}
+			}
+			if(set.contains(".")){
+				dotCount--;
+			}
+			if(set.size() + dotCount < board.length) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	//toString
 	public String toString() {
 		return printBoard();
