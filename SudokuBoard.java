@@ -52,6 +52,10 @@ public class SudokuBoard {
 		return sBoard;
 	}
 
+	public boolean isValid() {
+		return isValidInput() && hasRowDuplicates() && hasColDuplicates() && hasSquareDuplicates();
+	}
+
 	private boolean isValidInput() {
 		for(String[] row : board) {
 			for(String col : row) {
