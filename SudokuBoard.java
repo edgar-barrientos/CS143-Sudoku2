@@ -56,6 +56,7 @@ public class SudokuBoard {
 		return isValidInput() && hasRowDuplicates() && hasColDuplicates() && hasSquareDuplicates();
 	}
 
+	// These helpers reject bad characters and ignore empty cells when checking duplicates.
 	private boolean isValidInput() {
 		for(String[] row : board) {
 			for(String col : row) {
@@ -79,6 +80,7 @@ public class SudokuBoard {
 					dotCount++;
 				}
 			}
+			// Remove the shared empty-cell marker so only repeated numbers count as duplicates.
 			if(set.contains(".")){
 				dotCount--;
 			}
@@ -99,6 +101,7 @@ public class SudokuBoard {
 					dotCount++;
 				}
 			}
+			// Remove the shared empty-cell marker so only repeated numbers count as duplicates.
 			if(set.contains(".")){
 				dotCount--;
 			}
@@ -124,6 +127,7 @@ public class SudokuBoard {
 						}
 					}
 				}
+				// Remove the shared empty-cell marker so only repeated numbers count as duplicates.
 				if(set.contains(".")){
 					dotCount--;
 				}
@@ -146,6 +150,7 @@ public class SudokuBoard {
 
 		for(String[] row : board) {
 			for(String col : row) {
+				// Empty cells are ignored here because a solved board must count only filled digits.
 				if(!col.equals(".")) {
 					int value = map.get(col);
 					map.put(col, value + 1);
