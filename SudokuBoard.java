@@ -85,6 +85,26 @@ public class SudokuBoard {
 		return true;
 	}
 
+	private boolean hasColDuplicates() {
+		for(String[] row : board) {
+			Set<String> set = new HashSet<>();
+			int dotCount = 0;
+			for(String col : row) {
+				set.add(col);
+				if(col.equals(".")) {
+					dotCount++;
+				}
+			}
+			if(set.contains(".")){
+				dotCount--;
+			}
+			if(set.size() + dotCount < board.length) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	//toString
 	public String toString() {
 		return printBoard();
