@@ -135,6 +135,32 @@ public class SudokuBoard {
 		return true;
 	}
 
+	public boolean isSolved(){
+		if(!isValid()){
+			return false;
+		}
+		Map<String, Integer> map = new HashMap<> ();
+		for(int i = 1; i <= 9; i++) {
+			map.put(i + "", 0);
+		}
+
+		for(String[] row : board) {
+			for(String col : row) {
+				if(!col.equals(".")) {
+					int value = map.get(col);
+					map.put(col, value + 1);
+				}
+			}
+		}
+		Collection<Integer> values = map.values();
+		for(int num : values){
+			if(num != 9){
+				return false;
+			}
+		}
+		return true;
+	}
+
 	//toString
 	public String toString() {
 		return printBoard();
